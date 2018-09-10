@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>개발하기 — Entry Docs</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Entry Docs - Entry 개발 가이드">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="개발하기 — Entry Docs">
+        <meta property="og:description" content="Entry Docs - Entry 개발 가이드">
+        <meta property="og:image" content="https://entrylabs.github.io/docs/images/logo.png">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="개발하기 — Entry Docs">
+        <meta name="twitter:description" content="Entry Docs - Entry 개발 가이드">
+        <meta name="twitter:image" content="https://entrylabs.github.io/docs/images/logo.png">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/docs/images/icons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/docs/images/icons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/docs/images/icons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/docs/images/icons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/docs/images/icons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/docs/images/icons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/docs/images/icons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/docs/images/icons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/docs/images/icons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/docs/images/icons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/docs/images/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/docs/images/icons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/docs/images/icons/favicon-16x16.png">
+        <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+        <meta name="msapplication-TileColor" content="#4fc08d">
+        <meta name="theme-color" content="#4fc08d">
+
+        <meta name="msapplication-config" content="browserconfig.xml">
+        <link rel="manifest" href="/manifest.json">
+
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Dosis:500' rel='stylesheet' type='text/css'>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- main page styles -->
+        <link rel="stylesheet" href="/docs/css/page.css">
+
+        <!-- this needs to be loaded before guide's inline scripts -->
+        <script>window.PAGE_TYPE = "guide"</script>
+
+        <!-- ga -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-103554573-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </head>
+    <body class="docs">        <div id="mobile-bar" >
+            <a class="menu-button"></a>
+            <a class="logo" href="/docs/"></a>
+        </div>
+        <div id="header">
+  <a id="logo" href="/docs/">
+    <img src="/docs/images/logo.png">
+  </a>
+  <ul id="nav">
+    <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
+  </form>
+</li>
+<li>
+    <a href="/docs/guide/" class="nav-link current">Guide</a>
+</li>
+<li>
+  <a href="http://github.com/entrylabs/" target="_blank" class="nav-link">GitHub</a>
+</li>
+
+  </ul>
+</div>
+
+        
+            <div id="main" class="fix-sidebar">
+                
+                    
+    <div class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="main-menu">
+            <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+  </form>
+</li>
+<li>
+    <a href="/docs/guide/" class="nav-link current">Guide</a>
+</li>
+<li>
+  <a href="http://github.com/entrylabs/" target="_blank" class="nav-link">GitHub</a>
+</li>
+
+        </ul>
+        <div class="list">
+            <ul class="menu-root">
+    
+    
+    
+            
+                
+                
+                    
+                        <li><h3>START</h3></li>
+                    
+                
+                <li>
+                    <a href="/docs/guide/index.html" class="sidebar-link">시작하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/2018-07-30-tutorial.html" class="sidebar-link">엔트리 하드웨어 개발 튜토리얼</a>
+                </li>
+            
+        
+    
+            
+                
+                
+                    
+                        <li><h3>Common</h3></li>
+                    
+                
+                <li>
+                    <a href="/docs/guide/common/2018-09-10-nodejs_setting.html" class="sidebar-link">Node.js 개발 환경 세팅</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/common/2018-09-10-git_setting.html" class="sidebar-link">Git 개발 환경 세팅</a>
+                </li>
+            
+        
+    
+            
+                
+                
+                    
+                        <li><h3>Entryjs</h3></li>
+                    
+                
+                <li>
+                    <a href="/docs/guide/entryjs/2018-03-09-getting_started.html" class="sidebar-link">시작하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entryjs/2016-05-22-add_new_blocks.html" class="sidebar-link">블록 명세 작성</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entryjs/2016-05-26-add_new_blocks2.html" class="sidebar-link">블록 사용 등록</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entryjs/2016-05-26-add_new_blocks3.html" class="sidebar-link">블록 모양별 개발 방법</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entryjs/2016-07-08-add_new_blocks4.html" class="sidebar-link">하드웨어 블록 만들기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entryjs/2018-03-09-translate.html" class="sidebar-link">하드웨어 블록 번역작업</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entryjs/2018-03-09-add_new_blocks5.html" class="sidebar-link">하드웨어별 블록생성 하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entryjs/2018-03-23-test_hardware.html" class="sidebar-link">하드웨어 블록 테스트하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html" class="sidebar-link">하드웨어 추가하기</a>
+                </li>
+            
+        
+    
+            
+                
+                
+                    
+                        <li><h3>Entry Hw</h3></li>
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-hw/2016-05-01-getting_started.html" class="sidebar-link">시작하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-hw/2016-05-03-add_module.html" class="sidebar-link">하드웨어 모듈 추가하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-hw/add_bluetooth_hardware.html" class="sidebar-link">블루투스 하드웨어 추가하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-hw/2017-05-16-enroll_entry-hw.html" class="sidebar-link">하드웨어 등록 서비스 신청하기</a>
+                </li>
+            
+        
+    
+            
+                
+                
+                    
+                        <li><h3>Entry Offline</h3></li>
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-offline/2017-12-20-getting_started.html" class="sidebar-link">시작하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-offline/2017-12-21-project_structure.html" class="sidebar-link">프로젝트 구조</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-offline/2017-12-27-develop.html" class="sidebar-link current">개발하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-offline/2018-01-10-add_objects.html" class="sidebar-link">오브젝트 추가하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-offline/2017-12-28-translate.html" class="sidebar-link">다국어 작업하기</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/entry-offline/2018-01-09-build.html" class="sidebar-link">빌드하기</a>
+                </li>
+            
+        
+    
+            
+                
+                
+                    
+                        <li><h3>END</h3></li>
+                    
+                
+                <li>
+                    <a href="/docs/guide/end.html" class="sidebar-link">반영하기</a>
+                </li>
+            
+        
+    
+            
+                
+                
+                    
+                        <li><h3>Etc.</h3></li>
+                    
+                
+                <li>
+                    <a href="/docs/guide/etc/2016-05-03-git_fork.html" class="sidebar-link">Git 사용방법</a>
+                </li>
+            
+                
+                
+                    
+                
+                <li>
+                    <a href="/docs/guide/etc/2016-07-07-faq.html" class="sidebar-link">FAQ</a>
+                </li>
+            
+        
+</ul>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="content guide with-sidebar 2017-12-27-develop-guide">
+    
+      
+    
+    
+      <h1>개발하기</h1>
+    
+    <p>엔트리 오프라인은 일반적으로 EntryJS 의 오프라인 구현버전으로 생각하시면됩니다. 즉, EntryJS 의 example.html 을 본격적으로 데스크탑 전용으로 사용할 수 있게 재구성되었습니다. 여기에 엔트리 하드웨어 프로그램을 내장하여, 보다 쉽게 하드웨어 연결을 할수 있도록 기능을 추가하였습니다.</p>
+<h2 id="실행하기"><a href="#실행하기" class="headerlink" title="실행하기"></a>실행하기</h2><p>엔트리 오프라인의 의존성 패키지가 정상적으로 설치가 되었다면, 다음 명령어로 프로젝트를 시작할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn start</span><br></pre></td></tr></table></figure>
+<h2 id="디버깅-하기"><a href="#디버깅-하기" class="headerlink" title="디버깅 하기"></a>디버깅 하기</h2><p>Electron 디버깅은 크게 메인 프로세스 디버깅과, 렌더러 프로세스 디버깅 이렇게 2 가지로 구분할수 있습니다.</p>
+<h3 id="메인-프로세스-디버깅"><a href="#메인-프로세스-디버깅" class="headerlink" title="메인 프로세스 디버깅"></a>메인 프로세스 디버깅</h3><p>메인 프로세스 디버깅을 위해서는 먼저 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS CODE</a>의 설치가 필요합니다.<br>vscode 를 이용한 기본 디버깅 방법은 <a href="https://electronjs.org/docs/tutorial/debugging-main-process-vscode" target="_blank" rel="noopener">Electron 문서</a>와 <a href="https://code.visualstudio.com/docs/editor/debugging" target="_blank" rel="noopener">VS CODE 문서</a>를 참고해 주세요.<br>디버깅에 필요한 기본 세팅 값은 이미 .vscode/launch.json 파일에 작성해 두었습니다.</p>
+<h3 id="렌더러-프로세스-디버깅"><a href="#렌더러-프로세스-디버깅" class="headerlink" title="렌더러 프로세스 디버깅"></a>렌더러 프로세스 디버깅</h3><p>렌더러 프로세스 디버깅은 chrome 의 내장툴인 devtool 로 디버깅을 수행합니다. <code>entry_offline.js</code>의 코드를 자세히 살펴보면 <code>openDevTools()</code>함수를 호출하는 것을 볼 수 있습니다.<br>해당 함수호출이 실제 devtool 을 오픈하는 명령어 입니다. 현재는 프로그램이 실행된 상태에서 단축키로 devtool 을 열수 있도록 처리하였습니다.</p>
+<blockquote>
+<p>macOS : cmd + option + i<br>Windows : ctrl + shift + i</p>
+</blockquote>
+<p>devtool 은 크롬에서 사용하는것과 동일하게 디버깅이 가능합니다. 다만 macOS 의 경우 clipboard 사용이 제한되어있어 복사 밑 붙여넣기가 정상적으로 동작하지 않는 문제가 있습니다.</p>
+<h2 id="개발하기"><a href="#개발하기" class="headerlink" title="개발하기"></a>개발하기</h2><p>Electron 의 기반은 Node.js 입니다. 그렇기 때문에 Node.js 에서 사용가능한 대부분은 라이브러리들을 Electron 에서 사용할 수 있으며 엔트리 오프라인에서는 electron-forge 를 통해 electron-compile 을 사용하고 있여 <code>ES6</code>, <code>LESS</code>, <code>SASS</code>등을 별로의 설정없이 자연 스럽게 사용이 가능합니다.</p>
+<h3 id="메인-프로세스-개발하기"><a href="#메인-프로세스-개발하기" class="headerlink" title="메인 프로세스 개발하기"></a>메인 프로세스 개발하기</h3><p>Electron 에서 메인 프로세스는 일종의 back-end 의 기능을 수행하도록 되어 있습니다. 사용자의 눈에 보이지 않는 작업이나 앱의 일반적인 이벤트등을 관리하도록 되어 있습니다. 메인 프로세스 개발할때의 가장 유념 해야될점은 수정 후 수정 결과물이 곧바로 반영되지 않는 다는 사실입니다. 수정사항을 확인하기 위해서는 반드시 프로그램을 종료 후 다시 실행을 수행해야 합니다. 현재 엔트리 오프라인은 메인 프로세스에서 앱의 초기 설정 엔트리 하드웨어 기동과 ipc 통신을 수행하는 기능이 들어 있습니다.</p>
+<h4 id="IPC-통신"><a href="#IPC-통신" class="headerlink" title="IPC 통신"></a>IPC 통신</h4><p>ipc 통신은 일렉트론에서 제공하는 라이브러리로 메인 프로세스와 렌더러 프로세스간 통신하는 방법중 하나 입니다. Event Emitter 방식을 차용하고 있으며, 앱의 종료나 하드웨어 프로그램의 기동등에 사용되고 있습니다.</p>
+<h3 id="렌더러-프로세스-개발하기"><a href="#렌더러-프로세스-개발하기" class="headerlink" title="렌더러 프로세스 개발하기"></a>렌더러 프로세스 개발하기</h3><p>렌더러 프로세스는 front-end 개발과 동일하다고 생각하면 됩니다. 하지만 렌더러에도 메인 프로세스와 마찬가지로 Node.js 의 기능을 사용할수가 있습니다. 일반적인 front-end 개발보다 더 폭넓은 개발이 가능합니다. 그리고 소스 수정수 페이지 새로고침을 하면 수정한 사항이 바로 반영되도록 되어 있습니다. 현재 엔트리 오프라인은 메인 프로세스의 기능을 최소화 하고 대부분을 기능을 렌더러 프로세스에 담아 처리하고 있습니다. 가장 핵심이 되는 소스는 <code>workspace.js</code>, <code>header.js</code>, <code>entry_offline.html</code>, <code>native_controll.js</code>의 4개 파일입니다.</p>
+<h4 id="workspace-js"><a href="#workspace-js" class="headerlink" title="workspace.js"></a>workspace.js</h4><p>워크스페이스의 구현 소스가 작성되어 있습니다.</p>
+<h4 id="header-js"><a href="#header-js" class="headerlink" title="header.js"></a>header.js</h4><p>워크스페이스 상단의 헤더부분의 소스가 작성되어 있습니다.</p>
+<h4 id="entry-offline-html"><a href="#entry-offline-html" class="headerlink" title="entry_offline.html"></a>entry_offline.html</h4><p>워크스페이스의 DOM 이 작성되어 있으며, 필요한 라이브러리들과 스타일들이 링크되어 있습니다.</p>
+<h4 id="native-controll-js"><a href="#native-controll-js" class="headerlink" title="native_controll.js"></a>native_controll.js</h4><p>EntryJS 의 확장 기능을 담당하고 있으며 저장, 불러오기 등 오프라인 고유의 기능을 구현한 소스가 작성되어 있습니다.</p>
+
+    
+      <div class="guide-links">
+        
+          <span>← <a href="/docs/guide/entry-offline/2017-12-21-project_structure.html">프로젝트 구조</a></span>
+        
+        
+          <span style="float:right"><a href="/docs/guide/entry-offline/2018-01-10-add_objects.html">오브젝트 추가하기</a> →</span>
+        
+      </div>
+    
+    <div class="footer">
+      Caught a mistake or want to contribute to the documentation?
+      <!-- <a href="https://github.com/entrylabs/docs/blob/master/src/guide/entry-offline/2017-12-27-develop.md" target="_blank"> -->
+      <a href="https://github.com/entrylabs/docs/blob/master/source/guide/entry-offline/2017-12-27-develop.md" target="_blank">
+        Edit this page on Github!
+      </a>
+      <div id="disqus_thread"></div>
+      <script>
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://entryhw.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</div>
+
+                
+            </div>
+            <script src="/docs/js/smooth-scroll.min.js"></script>
+        
+
+        <!-- main custom script for sidebars, version selects etc. -->
+        <script src="/docs/js/css.escape.js"></script>
+        <script src="/docs/js/common.js"></script>
+
+        <!-- at the end of the HEAD -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
+        <!-- at the end of the BODY -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+        <script>
+        [
+            '#search-query-nav',
+            '#search-query-sidebar',
+            '#search-query-menu'
+        ].forEach(function (selector) {
+            if (!document.querySelector(selector)) return
+                // search index defaults to v2
+                var match = window.location.pathname.match(/^\/(v\d+)/)
+                var version = match ? match[1] : 'v2'
+                docsearch({
+                    apiKey: 'ac74b4b1e90e6f709527919849a9ab2e',
+                    indexName: 'entrylabs',
+                    inputSelector: selector,
+                    debug: false // Set debug to true if you want to inspect the dropdown
+                })
+            })
+        </script>
+
+        <!-- fastclick -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body)
+        }, false)
+        </script>
+    </body>
+</html>
