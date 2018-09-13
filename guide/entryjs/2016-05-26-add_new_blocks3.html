@@ -206,7 +206,7 @@
                     
                 
                 <li>
-                    <a href="/docs/guide/entryjs/2018-03-09-add_new_blocks5.html" class="sidebar-link">하드웨어별 블록생성 하기</a>
+                    <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html" class="sidebar-link">하드웨어 블록 추가하기</a>
                 </li>
             
                 
@@ -214,15 +214,7 @@
                     
                 
                 <li>
-                    <a href="/docs/guide/entryjs/2018-03-23-test_hardware.html" class="sidebar-link">하드웨어 블록 테스트하기</a>
-                </li>
-            
-                
-                
-                    
-                
-                <li>
-                    <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html" class="sidebar-link">하드웨어 추가하기</a>
+                    <a href="/docs/guide/entryjs/2018-03-23-test_project.html" class="sidebar-link">프로젝트 테스트하기</a>
                 </li>
             
         
@@ -396,13 +388,13 @@
 </blockquote>
 <h4 id="대기가-필요한-로직"><a href="#대기가-필요한-로직" class="headerlink" title="대기가 필요한 로직"></a>대기가 필요한 로직</h4><p>코드를 작성하다보면 ‘n 초간 30 의 값으로 출력’ 등으로 해당 블록이 일정 시간 대기를 해야 하는 로직이 필요할 수 있습니다.</p>
 <p>이와 같은 경우 기존에 실질적으로 사용되던 로직은 아래와 같습니다.</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">func: ...</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!script.isStart) &#123;</span><br><span class="line">    script.isStart = <span class="literal">true</span>;</span><br><span class="line">    script.timeFlag = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 시작 로직</span></span><br><span class="line">    <span class="keyword">var</span> timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        script.timeFlag = <span class="number">0</span>;</span><br><span class="line">        removeTimeout(timer);</span><br><span class="line">    &#125;, timeValue);</span><br><span class="line">    <span class="keyword">return</span> script;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (script.timeFlag == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">// 아직 데이터가 끝나지 않은 경우 현재 블록 계속 반복</span></span><br><span class="line">    <span class="keyword">return</span> script;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// n 초가 끝난 후 종료 로직</span></span><br><span class="line">    <span class="keyword">delete</span> script.isStart;</span><br><span class="line">    <span class="keyword">delete</span> script.timeFlag;</span><br><span class="line">    Entry.engine.isContinue = <span class="literal">false</span>;</span><br><span class="line">    Entry.hw.sendQueue[port] = &#123;</span><br><span class="line">        id: <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">100000</span>, <span class="number">0</span>),</span><br><span class="line">        type: Entry.EV3.motorMovementTypes.Power,</span><br><span class="line">        power: <span class="number">0</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> script.callReturn();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">func: ...</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!script.isStart) &#123;</span><br><span class="line">    script.isStart = <span class="literal">true</span>;</span><br><span class="line">    script.timeFlag = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 시작 로직</span></span><br><span class="line">    <span class="keyword">var</span> timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        script.timeFlag = <span class="number">0</span>;</span><br><span class="line">        removeTimeout(timer);</span><br><span class="line">    &#125;, timeValue);</span><br><span class="line">    <span class="keyword">return</span> script;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (script.timeFlag == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">// 아직 데이터가 끝나지 않은 경우 현재 블록 계속 반복</span></span><br><span class="line">    <span class="keyword">return</span> script;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// n 초가 끝난 후 종료 로직</span></span><br><span class="line">    <span class="keyword">delete</span> script.isStart;</span><br><span class="line">    <span class="keyword">delete</span> script.timeFlag;</span><br><span class="line">    Entry.engine.isContinue = <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// 종료 신호 요청</span></span><br><span class="line">    <span class="keyword">return</span> script.callReturn();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>변경된 로직은 아래와 같습니다. 더이상 플래그를 사용하지 않습니다.</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//파일 최상단에 해당 코드를 작성</span></span><br><span class="line"><span class="keyword">const</span> PromiseManager = <span class="built_in">require</span>(<span class="string">'@core/promiseManager'</span>);</span><br><span class="line"><span class="keyword">const</span> pm = <span class="keyword">new</span> PromiseManager();</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">func: <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">sprite, script</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//시작 로직</span></span><br><span class="line">    <span class="keyword">let</span> [time, value] = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([</span><br><span class="line">        script.getValue(<span class="string">'TIME'</span>, script),</span><br><span class="line">        script.getValue(<span class="string">'VALUE'</span>, script),</span><br><span class="line">    ]);</span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// await 을 붙여주어야 합니다.</span></span><br><span class="line">    <span class="comment">// 블록은 반복하지 않고, 해당 코드에서 멈춥니다.</span></span><br><span class="line">    <span class="keyword">await</span> pm.sleep(time * <span class="number">1000</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 종료 로직.</span></span><br><span class="line">    ...</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <h2 id="값-블록-1"><a href="#값-블록-1" class="headerlink" title="값 블록"></a>값 블록</h2><p>값 블록은 동그란 형태의 블록으로, 기본적으로 다른 블록에 끼워 넣어서 사용하는 블록입니다. 들어가는 값은 숫자와 문자의 형태의 데이터 입니다.</p>
 <h3 id="기본-블록"><a href="#기본-블록" class="headerlink" title="기본 블록"></a>기본 블록</h3><p><img src="/docs/images/entryjs/block_create/default_value.png" alt="기본 블록"></p>
 <p>기존에 정의된 값만을 반환하는 블록입니다. 유사 블록으로는 초시계, 소리값 이 있습니다.</p>
-<p> <code>skeleton</code>은 미리 정의된 블록 모양을 정하는 프로퍼티입니다.  이 예제에서는 <code>basic_string_field</code> 를 사용하였습니다.<br><code>fontColor</code>를 통해 블록 내 글자색을 변경할 수 있습니다.<br><code>template</code>프로퍼티로 블록이 보여지는 명칭을 변경할 수 있습니다.</p>
+<p><code>skeleton</code>은 미리 정의된 블록 모양을 정하는 프로퍼티입니다. 이 예제에서는 <code>basic_string_field</code> 를 사용하였습니다.<br><code>fontColor</code>를 통해 블록 내 글자색을 변경할 수 있습니다.<br><code>template</code>프로퍼티로 블록이 보여지는 명칭을 변경할 수 있습니다.</p>
 <blockquote>
 <p>template 프로퍼티는 작성되지 않은 경우, Lang.template 위치에서 블록 명칭과 동일한 값이 있는지 확인합니다. 여기에도 없는 경우 프로젝트 자체가 로드되지 않으므로 주의해주세요.</p>
 <p>또한 하드웨어 블록 개발시에는 다국어 템플릿 작성방법이 따로 명시되어있으므로, 해당 부분을 참고해주세요.</p>

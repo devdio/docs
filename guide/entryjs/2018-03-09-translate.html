@@ -206,7 +206,7 @@
                     
                 
                 <li>
-                    <a href="/docs/guide/entryjs/2018-03-09-add_new_blocks5.html" class="sidebar-link">하드웨어별 블록생성 하기</a>
+                    <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html" class="sidebar-link">하드웨어 블록 추가하기</a>
                 </li>
             
                 
@@ -214,15 +214,7 @@
                     
                 
                 <li>
-                    <a href="/docs/guide/entryjs/2018-03-23-test_hardware.html" class="sidebar-link">하드웨어 블록 테스트하기</a>
-                </li>
-            
-                
-                
-                    
-                
-                <li>
-                    <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html" class="sidebar-link">하드웨어 추가하기</a>
+                    <a href="/docs/guide/entryjs/2018-03-23-test_project.html" class="sidebar-link">프로젝트 테스트하기</a>
                 </li>
             
         
@@ -364,11 +356,13 @@
     
       <h1>하드웨어 블록 번역작업</h1>
     
-    <p>기존에는 <code>(root)/extern/lang/</code> 밑에 있는 <code>ko.js</code>, <code>en.js</code> 등을 수정해서 다국어를 적용 하였습니다. 이제 하드웨어 블록은 각 하드웨어 블록 파일에서 적용 하도록 변경 되었습니다.</p>
-<h2 id="다국어-추가하기"><a href="#다국어-추가하기" class="headerlink" title="다국어 추가하기"></a>다국어 추가하기</h2><p>일단 하드웨어 별로 다국어는 <code>(root)/src/playground/blocks/block_(하드웨어명).js</code> 파일에 추가합니다.</p>
-<p>예)</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 기본 세팅</span></span><br><span class="line">Entry.SAMPLE = &#123;</span><br><span class="line">    name: <span class="string">'SAMPLE'</span>,</span><br><span class="line">    setZero: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 언어 적용</span></span><br><span class="line">Entry.SAMPLE.setLanguage = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        ko: &#123;</span><br><span class="line">            <span class="comment">// ko.js에 작성하던 내용</span></span><br><span class="line">            template: &#123;</span><br><span class="line">                sample_block: <span class="string">"%1"</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        en: &#123;</span><br><span class="line">            <span class="comment">// en.js에 작성하던 내용</span></span><br><span class="line">            template: &#123;</span><br><span class="line">                sample_block: <span class="string">"%1"</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>이렇게 작업을 수행하고 기존에 추가하던 <code>(root)/extern/lang/</code> 밑에 있는 <code>ko.js</code>, <code>en.js</code>는 따로 수정하지 않습니다.</p>
+    <h2 id="다국어-추가하기"><a href="#다국어-추가하기" class="headerlink" title="다국어 추가하기"></a>다국어 추가하기</h2><p>엔트리 사이트의 언어별 리소스는 내부 프로젝트에 의해 관리되고 있습니다.<br>이 언어 리소스는 entryjs 개발을 위한 자체실행에서 사용할 수 있도록 extern/lang 아래에 다국어 데이터를 삽입해두었습니다.</p>
+<p>하지만 이 리소스는 entryjs 에서 수정되어도 실제로 반영되지 않습니다. 즉, 개발시에만 사용되는 파일입니다.<br>하드웨어 개발시에는 해당 리소스에 접근할 수 없으므로, 하드웨어 블록에 언어 리소스를 추가할 수 있도록 구현되어있습니다.<br>하드웨어의 언어 작업은 <code>src/playground/blocks/block_(하드웨어명).js</code> 의 setLanguage() 로직을 통해 추가할 수 있습니다.</p>
+<p>setLanguage 에서, ko.template 과 en.template 는 필수입니다.</p>
+<blockquote>
+<p>추가적으로 블럭의 도움말을 설정하고자 하는 경우, ko.Helper.(블럭명) 의 형태로 추가하시면 됩니다. </p>
+</blockquote>
+<p>예)<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 기본 세팅</span></span><br><span class="line">Entry.SAMPLE = &#123;</span><br><span class="line">    name: <span class="string">'SAMPLE'</span>,</span><br><span class="line">    setZero: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 언어 적용</span></span><br><span class="line">Entry.SAMPLE.setLanguage = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        ko: &#123;</span><br><span class="line">            <span class="comment">// ko.js에 작성하던 내용</span></span><br><span class="line">            template: &#123;</span><br><span class="line">                sample_block: <span class="string">"%1"</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        en: &#123;</span><br><span class="line">            <span class="comment">// en.js에 작성하던 내용</span></span><br><span class="line">            template: &#123;</span><br><span class="line">                sample_block: <span class="string">"%1"</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
     
       <div class="guide-links">
@@ -376,11 +370,7 @@
           <span>← <a href="/docs/guide/entryjs/2016-07-08-add_new_blocks4.html">하드웨어 블록 만들기</a></span>
         
         
-          <span style="float:right"><a href="/docs/guide/entryjs/2018-03-09-add_new_blocks5.html">하드웨어별 블록생성 하기</a> →</span>
-        
-          <span style="float:right"><a href="/docs/guide/entryjs/2018-03-23-test_hardware.html">하드웨어 블록 테스트하기</a> →</span>
-        
-          <span style="float:right"><a href="/docs/guide/entryjs/2018-03-14-add_hardware.html">하드웨어 추가하기</a> →</span>
+          <span style="float:right"><a href="/docs/guide/entryjs/2018-03-14-add_hardware.html">하드웨어 블록 추가하기</a> →</span>
         
       </div>
     

@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>하드웨어 블록 테스트하기 — Entry Docs</title>
+        <title>프로젝트 테스트하기 — Entry Docs</title>
         <meta charset="utf-8">
         <meta name="description" content="Entry Docs - Entry 개발 가이드">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <meta property="og:type" content="article">
-        <meta property="og:title" content="하드웨어 블록 테스트하기 — Entry Docs">
+        <meta property="og:title" content="프로젝트 테스트하기 — Entry Docs">
         <meta property="og:description" content="Entry Docs - Entry 개발 가이드">
         <meta property="og:image" content="https://entrylabs.github.io/docs/images/logo.png">
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="하드웨어 블록 테스트하기 — Entry Docs">
+        <meta name="twitter:title" content="프로젝트 테스트하기 — Entry Docs">
         <meta name="twitter:description" content="Entry Docs - Entry 개발 가이드">
         <meta name="twitter:image" content="https://entrylabs.github.io/docs/images/logo.png">
 
@@ -206,7 +206,7 @@
                     
                 
                 <li>
-                    <a href="/docs/guide/entryjs/2018-03-09-add_new_blocks5.html" class="sidebar-link">하드웨어별 블록생성 하기</a>
+                    <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html" class="sidebar-link">하드웨어 블록 추가하기</a>
                 </li>
             
                 
@@ -214,15 +214,7 @@
                     
                 
                 <li>
-                    <a href="/docs/guide/entryjs/2018-03-23-test_hardware.html" class="sidebar-link current">하드웨어 블록 테스트하기</a>
-                </li>
-            
-                
-                
-                    
-                
-                <li>
-                    <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html" class="sidebar-link">하드웨어 추가하기</a>
+                    <a href="/docs/guide/entryjs/2018-03-23-test_project.html" class="sidebar-link current">프로젝트 테스트하기</a>
                 </li>
             
         
@@ -357,16 +349,16 @@
 </div>
 
 
-<div class="content guide with-sidebar 2018-03-23-test_hardware-guide">
+<div class="content guide with-sidebar 2018-03-23-test_project-guide">
     
       
     
     
-      <h1>하드웨어 블록 테스트하기</h1>
+      <h1>프로젝트 테스트하기</h1>
     
-    <p>기존 테스트 방법은 단순하게 <code>(your path)/example/example.html</code>파일을 브라우저에 실행하여 테스트 하는 방식이었습니다. 현재 크롬이 새버전이 나오면서 보안문제로 local file의 html 파일에서는 CORS문제로 socket 통신이 불가능해 졌습니다. 이에 따라 테스트 방법을 수정하였습니다.</p>
-<h2 id="테스트-진행"><a href="#테스트-진행" class="headerlink" title="테스트 진행"></a>테스트 진행</h2><p>테스트는 <code>package.json</code>의 <code>script</code>에 정의된 <code>serve</code>에 따라 테스트 서버를 실행하여 테스트를 진행하도록 하였습니다.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yarn serve</span><br><span class="line">// 또는</span><br><span class="line">$ npm run serve</span><br></pre></td></tr></table></figure>
+    <h2 id="테스트-진행"><a href="#테스트-진행" class="headerlink" title="테스트 진행"></a>테스트 진행</h2><p>entryjs 는 브라우저 내의 특정 div 를 기준으로 workspace 를 생성하고, 해당 DOM 위에서 실행되는 형태입니다.<br>간단한 테스트를 위해서 위와 같은 방법은 번거롭기 때문에, 테스트를 위한 페이지를 실행하는 방법이 구현되어있습니다.</p>
+<p>terminal 을 실행 후 entryjs 프로젝트 경로에서 아래 명령어를 입력합니다.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm run serve</span><br><span class="line">// 또는 yarn 라이브러리가 설치되어 있는 경우</span><br><span class="line">$ yarn serve</span><br></pre></td></tr></table></figure>
 <p>위와 같이 실행하면 브라우저가 자동실행되면서 테스트 가능한 페이지가 열리고 자동으로 <code>entry.js</code>가 빌드 됩니다. <code>entry.js</code>빌드가 완전히 진행되야 수정하신 내용이 반영되므로 빌드 이후에 새로고침을 한번 하시기 바랍니다.</p>
 <h3 id="빌드-모습"><a href="#빌드-모습" class="headerlink" title="빌드 모습"></a>빌드 모습</h3><p><img src="../../images/entryjs/serve_build.png" alt="빌드모습"></p>
 <p><code>watch</code>가 작동하고 있으므로 해당 상태에서 소스파일을 수정하시면 빌드가 자동으로 진행됩니다.</p>
@@ -374,15 +366,15 @@
     
       <div class="guide-links">
         
-          <span>← <a href="/docs/guide/entryjs/2018-03-09-translate.html">하드웨어 블록 번역작업</a></span>
+          <span>← <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html">하드웨어 블록 추가하기</a></span>
         
         
       </div>
     
     <div class="footer">
       Caught a mistake or want to contribute to the documentation?
-      <!-- <a href="https://github.com/entrylabs/docs/blob/master/src/guide/entryjs/2018-03-23-test_hardware.md" target="_blank"> -->
-      <a href="https://github.com/entrylabs/docs/blob/master/source/guide/entryjs/2018-03-23-test_hardware.md" target="_blank">
+      <!-- <a href="https://github.com/entrylabs/docs/blob/master/src/guide/entryjs/2018-03-23-test_project.md" target="_blank"> -->
+      <a href="https://github.com/entrylabs/docs/blob/master/source/guide/entryjs/2018-03-23-test_project.md" target="_blank">
         Edit this page on Github!
       </a>
       <div id="disqus_thread"></div>

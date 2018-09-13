@@ -206,7 +206,7 @@
                     
                 
                 <li>
-                    <a href="/docs/guide/entryjs/2018-03-09-add_new_blocks5.html" class="sidebar-link">하드웨어별 블록생성 하기</a>
+                    <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html" class="sidebar-link">하드웨어 블록 추가하기</a>
                 </li>
             
                 
@@ -214,15 +214,7 @@
                     
                 
                 <li>
-                    <a href="/docs/guide/entryjs/2018-03-23-test_hardware.html" class="sidebar-link">하드웨어 블록 테스트하기</a>
-                </li>
-            
-                
-                
-                    
-                
-                <li>
-                    <a href="/docs/guide/entryjs/2018-03-14-add_hardware.html" class="sidebar-link">하드웨어 추가하기</a>
+                    <a href="/docs/guide/entryjs/2018-03-23-test_project.html" class="sidebar-link">프로젝트 테스트하기</a>
                 </li>
             
         
@@ -364,9 +356,13 @@
     
       <h1>블록 사용 등록</h1>
     
-    <p>기존에는 <code>static.js</code>에 <code>EntryStatic.getAllBlocks</code>와 <code>EntryStatic.blockInfo</code>두 가지를 설정해야 했지만 <code>blockInfo</code>의 경우 블록정보에 포함 되도록 변경되었습니다. 이제 <code>getAllBlocks</code>에만 사용 할 블록을 등록하면 해당 블록이 나오게 되어있습니다. 작성 방법은 기존과 같습니다.</p>
-<h2 id="하드웨어-블록-등록"><a href="#하드웨어-블록-등록" class="headerlink" title="하드웨어 블록 등록"></a>하드웨어 블록 등록</h2><p>하드웨어 블록은 <code>EntryStatic.getAllBlocks</code>에 작성한 블록의 명칭을 등록하면 됩니다. 하드웨어 블록은 <code>arduino</code>카테고리에 포함됩니다.  </p>
-<p>예)<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 블록명세</span></span><br><span class="line">Entry.block = &#123;</span><br><span class="line">    <span class="string">"sample_block"</span>: &#123;</span><br><span class="line">        <span class="string">"parent"</span>: <span class="string">""</span>,</span><br><span class="line">        <span class="string">"color"</span>: <span class="string">""</span>,</span><br><span class="line">        <span class="string">"fontColor"</span>: <span class="string">""</span>,</span><br><span class="line">        <span class="string">"skeleton"</span>: <span class="string">""</span>,</span><br><span class="line">        <span class="string">"statement"</span>: [],</span><br><span class="line">        <span class="string">"params"</span>: [],</span><br><span class="line">        <span class="string">"events"</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">"def"</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">"paramsKeyMap"</span>: &#123;&#125;,</span><br><span class="line">        <span class="string">"class"</span>: <span class="string">""</span>,</span><br><span class="line">        <span class="string">"isNotFor"</span>: [],</span><br><span class="line">        <span class="string">"func"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// static.js 내용</span></span><br><span class="line">&#123;</span><br><span class="line">    type: guide</span><br><span class="line">    category: <span class="string">"arduino"</span>,</span><br><span class="line">    blocks: [</span><br><span class="line">        <span class="comment">//... 기존 존재하는 블록</span></span><br><span class="line">        <span class="string">"sample_block"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+    <h2 id="블록-등록"><a href="#블록-등록" class="headerlink" title="블록 등록"></a>블록 등록</h2><p>엔트리는 현재 EntryStatic.getAllBlocks() 를 통해 모든 블록정보를 가져온 후,<br>해당 정보를 활용해 실제 블록을 만들어내는 프로세스를 가지고 있습니다.<br>블록을 만들었다고 하더라도 이 위치에 구현한 블록명을 등록하지 않으면 블록이 보여지지 않습니다.</p>
+<p>해당 파일의 위치는 extern/util/static.js 입니다.  </p>
+<p><strong>블록의 기록 순서는 실제 블록의 순서에 영향을 줍니다. (동일한 순서입니다.)</strong>    </p>
+<blockquote>
+<p>하드웨어 블록의 경우, category 명은 arduino 입니다.<br>기존 등록된 블록의 형태를 참고하시고 추가하시기 바랍니다.</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">EntryStatic.getAllBlocks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        &#123;</span><br><span class="line">            category: <span class="string">'start'</span>,</span><br><span class="line">            blocks: [</span><br><span class="line">                <span class="string">'when_run_button_click'</span>,</span><br><span class="line">                <span class="comment">// ...</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     
       <div class="guide-links">
