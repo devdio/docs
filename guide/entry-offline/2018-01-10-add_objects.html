@@ -356,39 +356,46 @@
     
       <h1>오브젝트 추가하기</h1>
     
-    <p>엔트리의 오브젝트는 크게 <code>오브젝트</code>, <code>모양 또는 글상자</code>, <code>소리</code>의 3 가지 요소로 이루어져 있습니다. <code>오브젝트</code>가 가장 큰 요소로 <code>모양 또는 글상자</code>와 <code>소리</code>속성을 가지고 있을 수 있습니다. <code>글상자</code>의 경우는 사용자가 직접 생성해야 하므로 여기에서는 따로 설명하지 않겠습니다.</p>
-<p>오브젝트 관리는 <code>src/renderer/resource_map</code> 디렉토리 밑에 있는 <code>json</code>파일들로 관리하고 있으며, 해당 오브젝트의 명칭은 <code>src/renderer/lang</code>에서 관리하고 있습니다. 실제파일은 <code>node_modules/uploads</code>에 존재합니다. 폴더 및 파일이은 일종의 난수값으로 처리되어있습니다.</p>
-<p>기본적으로 오브젝트를 추가하는 방법은 아래와 같습니다.</p>
+    <p>엔트리의 오브젝트는 <code>오브젝트</code>와 <code>모양 또는 글상자</code>, <code>소리</code>로 구분됩니다.<br><code>오브젝트</code> 는 다수의 <code>모양</code>, <code>소리</code> 를 가질 수 있는 엔트리 객체를 말합니다.</p>
+<p>여기서는 특정 오브젝트를 추가하는 방법에 대해 소개하도록 하겠습니다.</p>
+<p>엔트리 오프라인에서 오브젝트들은 아래와 같이 관리되고 있습니다.</p>
+<ul>
+<li><code>src/renderer/resource_map</code> 내의 <code>json</code> 파일들로 <strong>오브젝트 메타데이터</strong>를 관리합니다.</li>
+<li><code>src/renderer/lang</code> 에서 <strong>오브젝트의 명칭</strong>을 관리합니다.</li>
+<li><code>src/renderer/node_modules/uploads</code> 에서 <strong>실제 파일</strong>을 관리합니다.</li>
+</ul>
+<p>오브젝트를 추가하는 방법은 아래와 같습니다.</p>
 <ol>
-<li>추가할 <code>모양</code> 또는 <code>소리</code> 파일을 <code>uploads</code>에 추가.<ol>
-<li>추가할때 난수값으로 파일명을 만들고 해당 이름으로 폴더 구조도 생성.</li>
+<li>추가할 <code>오브젝트</code> 파일을 <code>uploads</code>에 추가 (추가시 파일명은 난수값이며, 폴더 구조도 이와 연관이 있습니다.)</li>
+<li><code>resource_map</code> 하위의 <code>json</code>파일에 오브젝트 메타데이터 추가</li>
+<li><code>json</code>에 추가된 오브젝트에 맞추어 <code>lang</code>밑에 있는 영어 언어 추가</li>
 </ol>
-</li>
-<li><code>resource_map</code> 밑에 있는 <code>json</code>파일에 오브젝트 추가.</li>
-<li><code>json</code>에 추가된 오브젝트에 맞추어 <code>lang</code>밑에 있는 영어 언어 추가.</li>
-</ol>
-<h2 id="파일명칭-만들기"><a href="#파일명칭-만들기" class="headerlink" title="파일명칭 만들기"></a>파일명칭 만들기</h2><p>오브젝트의 파일명은 <code>crypto</code>라이브러리를 사용해서 만듭니다. <code>native_controll.js</code>의 <code>createFileId</code>라는 함수에서 정해진 규칙으로 파일 명칭을을 만들어 내고 있습니다.</p>
+<h2 id="파일명칭-만들기"><a href="#파일명칭-만들기" class="headerlink" title="파일명칭 만들기"></a>파일명칭 만들기</h2><p>폴더 및 파일명 엔트리 전역에서 사용되는 난수값으로 처리되어있습니다.<br>오브젝트의 파일명은 <code>native_controll.js</code>의 <code>createFileId</code>라는 함수에서 정해진 규칙으로 만들 수 있습니다.</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> createFileId = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> randomStr = (<span class="built_in">Math</span>.random().toString(<span class="number">16</span>) + <span class="string">"000000000"</span>).substr(<span class="number">2</span>, <span class="number">8</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">require</span>(<span class="string">"crypto"</span>)</span><br><span class="line">    .createHash(<span class="string">"md5"</span>)</span><br><span class="line">    .update(randomStr)</span><br><span class="line">    .digest(<span class="string">"hex"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>위의 함수를 실행하면 <code>c10d9264e94cf57451b45a13ca6db1cc</code> 와 같은 32 자리 텍스트가 만들어 지게 됩니다. 이렇게 만들어진 파일의 앞의 4 자리가 폴더의 명칭도 결정됩니다. <code>c10d9264e94cf57451b45a13ca6db1cc</code>의 경우는 <code>uploads/c1/0d/image</code>와 같이 앞의 4 자리를 2 자리씩 잘라서 폴더에 파일을 넣도록 처리 됩니다. 집어 넣는 파일이 <code>모양</code>파일 이라면 <code>uploads/c1/0d/image/c10d9264e94cf57451b45a13ca6db1cc.png</code> 와 같이 파일을 넣으면 됩니다.</p>
-<h2 id="모양-추가하기"><a href="#모양-추가하기" class="headerlink" title="모양 추가하기"></a>모양 추가하기</h2><p>모양은 또 크게 <code>image</code>와 <code>thumb</code>로 나뉩니다. <code>image</code>는 원본 이미지로서 실제 사용자가 사용할 이미지 이고 <code>thumb</code>는 썸네일 이미지로 큰이미지가 필요없는곳에 이미지를 표기 할때 사용됩니다. 하나의 모양이 추가 할때 반드시 <code>image</code>와 <code>thumb</code>가 반드시 같이 추가가 되어야 하고 <code>image</code>의 경우는 특별한 사이즈 스팩이 있지는 않으나, <code>thumb</code>의 경우는 이미지의 가로세로 길이가 최대 <code>96px</code>이 되도록 처리되어야 합니다.</p>
+<p>위의 함수를 실행하면 <code>c10d9264e94cf57451b45a13ca6db1cc</code> 와 같은 32 자리 텍스트가 만들어 지게 됩니다.<br>이렇게 만들어진 파일의 앞의 4 자리가 폴더의 명칭도 결정됩니다.<br><code>c10d9264e94cf57451b45a13ca6db1cc</code>의 경우는 <code>uploads/c1/0d/image</code>와 같이 <strong>앞의 4 자리를 2 자리씩 잘라서</strong> 폴더에 파일을 넣도록 처리 됩니다.<br>집어 넣는 파일이 <code>모양</code> 파일 이라면 <code>uploads/c1/0d/image/c10d9264e94cf57451b45a13ca6db1cc.png</code> 와 같이 파일을 넣으면 됩니다.</p>
+<h2 id="모양-추가하기"><a href="#모양-추가하기" class="headerlink" title="모양 추가하기"></a>모양 추가하기</h2><p>모양은 <code>image</code>와 <code>thumb</code>로 나뉩니다. <code>image</code>는 원본 이미지로서 실제 사용자가 사용할 이미지이며, <code>thumb</code>는 썸네일 이미지로 큰이미지가 필요없는곳에 이미지를 표기 할때 사용됩니다. </p>
+<p>모양 추가에는 아래와 같은 제약사항이 있습니다.</p>
+<ul>
+<li>하나의 모양이 추가 할때 반드시 <code>image</code>와 <code>thumb</code>가 반드시 같이 추가가 되어야 합니다.</li>
+<li>파일 확장자는 <code>.png</code>로 만들어져야 합니다.</li>
+<li><code>image</code>의 경우 특별한 사이즈 제한이 없으나, <code>thumb</code> 는 <strong>96px * 96px</strong> 로 제한되어 있습니다.</li>
+</ul>
+<p>필요한 위치에 파일을 넣었으면 <code>resource_map/pictures.json</code> 파일에 오브젝트를 추가해야 합니다.<br>모양 오브젝트의 기본 구성은 다음과 같습니다.</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "filename": "a8268fd79a48fd9b92c7b47406b95393", // 만들어진 파일이름 추가</span><br><span class="line">  "name": "(1)엔트리봇_걷기1", // 해당 모양의 이름</span><br><span class="line">  "type": "_system_",  // 모양의 타입 _system_ 으로 고정</span><br><span class="line">  "dimension": &#123; "width": 284, "height": 350 &#125;,  // 이미지의 사이즈</span><br><span class="line">  "category": &#123; "main": "entrybot_friends" &#125;  // 카테고리</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>예) 960 x 960 의 원본 이미지가 있으면 썸네일 이미지는 96 x 96 사이즈의 이미지가 되어야 합니다.</p>
+<p>카테고리의 경우 설정된 키에 따라 오브젝트가 분리가 됩니다.<br>지원되는 <code>모양</code> 카테고리는 다음과 같습니다.<br>“entrybot_friends”, “architect”, “vehicles”, “stuff”, “default”, “animal”, “interface”, “environment”, “food”, “people”, “plant”, “background”, “fantasy”</p>
 </blockquote>
-<p>파일 확장자는 <code>.png</code>로 만들어져야 합니다.</p>
-<p>필요한 위치에 파일을 넣었으면 <code>resource_map/pictures.json</code> 파일에 오브젝트를 추가해야 합니다. 모양 오브젝트의 기본 구성은 다음과 같습니다.</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  // 만들어진 파일이름 추가</span><br><span class="line">  "filename": "a8268fd79a48fd9b92c7b47406b95393",</span><br><span class="line">  // 해당 모양의 이름</span><br><span class="line">  "name": "(1)엔트리봇_걷기1",</span><br><span class="line">  // 모양의 타입 _system_ 으로 고정</span><br><span class="line">  "type": "_system_",</span><br><span class="line">  // 이미지의 사이즈</span><br><span class="line">  "dimension": &#123; "width": 284, "height": 350 &#125;,</span><br><span class="line">  // 카테고리</span><br><span class="line">  "category": &#123; "main": "entrybot_friends" &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>카테고리의 경우 설정된 키에 따라 오브젝트가 분리가 된다.<br>지원되는 모양의 카테고리는 다음과 같다.<br>“entrybot_friends”, “architect”, “vehicles”, “stuff”, “default”, “animal”, “interface”, “environment”, “food”, “people”, “plant”, “background”, “fantasy”</p>
-</blockquote>
-<h2 id="소리-추가하기"><a href="#소리-추가하기" class="headerlink" title="소리 추가하기"></a>소리 추가하기</h2><p>소리파일은 <code>sound</code>의 별로 폴더 없이 <code>uploads/xx/xx/</code> 폴더 바로 밑에 파일이 존재 하면 됩니다. 확장자는 <code>mp3</code>로 만들어져야 합니다. 소리 오브젝트의 기본구성은 다음과 같습니다.</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  // 만들어진 파일이름 추가</span><br><span class="line">  "filename": "6d64798150d7b48a9dd76af909a82ef9",</span><br><span class="line">  // 해당 소리의 이름</span><br><span class="line">  "name": "기침소리",</span><br><span class="line">  // 소리의 타입 _system_ 으로 고정</span><br><span class="line">  "type": "_system_",</span><br><span class="line">  // 소리파일의 확장자</span><br><span class="line">  "ext": ".mp3",</span><br><span class="line">  // 소리파일의 재생시간</span><br><span class="line">  "duration": 1.2,</span><br><span class="line">  // 소리파일의 카테고리</span><br><span class="line">  "category": &#123; "sub": "일상생활", "main": "사람" &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="소리-추가하기"><a href="#소리-추가하기" class="headerlink" title="소리 추가하기"></a>소리 추가하기</h2><p>소리파일은 <code>image</code>와 다르게 <code>uploads/xx/xx/</code> 폴더 바로 밑에 파일이 존재 하면 됩니다.</p>
+<p>별다른 제약사항은 없으며, 확장자가 <code>mp3</code>여야 합니다.</p>
+<p>소리 오브젝트의 기본구성은 다음과 같습니다.</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "filename": "6d64798150d7b48a9dd76af909a82ef9",  // 만들어진 파일이름 추가</span><br><span class="line">  "name": "기침소리",  // 해당 소리의 이름</span><br><span class="line">  "type": "_system_",  // 소리의 타입 _system_ 으로 고정</span><br><span class="line">  "ext": ".mp3",  // 소리파일의 확장자</span><br><span class="line">  "duration": 1.2,  // 소리파일의 재생시간</span><br><span class="line">  "category": &#123; "sub": "일상생활", "main": "사람" &#125;  // 소리파일의 카테고리</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>카테고리의 경우 설정된 키에 따라 오브젝트가 분리가 된다.<br>지원되는 소리의 카테고리는 다음과 같다.<br>“사람”, 자연, “사물”, “판타지”, “악기”</p>
 </blockquote>
-<h2 id="오브젝트-추가하기"><a href="#오브젝트-추가하기" class="headerlink" title="오브젝트 추가하기"></a>오브젝트 추가하기</h2><p>오브젝트를 추가하는 방법은 소리 및 이미지를 똑같이 넣은 후 둘의 데이터를 다 삽입하여 처리한다.</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  // 오브젝트 명칭</span><br><span class="line">  "name": "(2)엔트리봇",</span><br><span class="line">  // 소리 정보 - 소리 오브젝트 내용이 들어가면됨.</span><br><span class="line">  "sounds": [],</span><br><span class="line">  // 모양 정보 - 모양 오브젝트 내용이 들어가면됨.</span><br><span class="line">  "pictures": [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"filename"</span>: <span class="string">"f2a7a0b57de442aba21e63a53a387436"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"(2)엔트리봇_앞1"</span>,</span><br><span class="line">      <span class="attr">"dimension"</span>: &#123; <span class="attr">"width"</span>: <span class="number">196</span>, <span class="attr">"height"</span>: <span class="number">351</span> &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  // 오브젝트의 타입 _system_ 고정</span><br><span class="line">  "type": "_system_",</span><br><span class="line">  // 오브젝트가 분리될 카테고리 타입</span><br><span class="line">  "category": &#123; "main": "entrybot_friends" &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="오브젝트-추가하기"><a href="#오브젝트-추가하기" class="headerlink" title="오브젝트 추가하기"></a>오브젝트 추가하기</h2><p>오브젝트를 추가하는 방법은 소리 및 이미지를 위와 동일하게 추가한 후, 메타데이터에서 연결하여 사용합니다.</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "name": "(2)엔트리봇",  // 오브젝트 명칭</span><br><span class="line">  "sounds": [],  // 소리 정보 - 소리 오브젝트 내용이 들어가면됨.</span><br><span class="line">  // 모양 정보 - 모양 오브젝트 내용이 들어가면됨.</span><br><span class="line">  "pictures": [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"filename"</span>: <span class="string">"f2a7a0b57de442aba21e63a53a387436"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"(2)엔트리봇_앞1"</span>,</span><br><span class="line">      <span class="attr">"dimension"</span>: &#123; <span class="attr">"width"</span>: <span class="number">196</span>, <span class="attr">"height"</span>: <span class="number">351</span> &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  "type": "_system_",  // 오브젝트의 타입 _system_ 고정</span><br><span class="line">  "category": &#123; "main": "entrybot_friends" &#125;,  // 오브젝트가 분리될 카테고리 타입</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>오브젝트의 경우 모양의 카테고리와 카테고리 형태가 동일하다.</p>
+<p><code>오브젝트</code>에서 허용되는 카테고리 종류는 <code>모양</code> 에서 사용되는 카테고리와 동일합니다.</p>
 </blockquote>
 
     

@@ -373,7 +373,7 @@
 </blockquote>
 <p>사이트 접속 후 우측 상단에 있는 Fork 버튼을 클릭합니다.<br><img src="../../images/entry-hw/fork2.png" alt="Fork2">  </p>
 <p>Fork를 통하여 본인 계정으로 해당 Repository를 복사합니다. 복사한 레포지토리를 git clone으로 내 로컬 컴퓨터에 다운 받아 개발 가능한 상태로 만듭니다.</p>
-<h3 id="클론"><a href="#클론" class="headerlink" title="클론"></a>클론</h3><p>클론을 먼저 하기 전에 Git Fork기능으로 현재 Entrylabs의 Repository를 복사하여 자신의 Repository를 만듭니다. 이후 <code>Git Clone</code>을 수행하여 자신의 로컬에 해당 소스를 받습니다.<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/(본인의 Repository)/entry-hw.git</span><br></pre></td></tr></table></figure></p>
+<h3 id="클론"><a href="#클론" class="headerlink" title="클론"></a>클론</h3><p>fork 를 통해 원격 저장소를 복사하였으면, 로컬로 저장소를 가져와야 합니다. <code>git clone</code>을 수행하여 로컬에 해당 소스를 받습니다.<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/(본인의 Repository)/entry-hw.git</span><br></pre></td></tr></table></figure></p>
 <h3 id="의존성-모듈-설치"><a href="#의존성-모듈-설치" class="headerlink" title="의존성 모듈 설치"></a>의존성 모듈 설치</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install</span><br><span class="line">// yarn으로도 똑같이 설치가 가능합니다.</span><br><span class="line">$ yarn</span><br></pre></td></tr></table></figure>
 <h3 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
     
