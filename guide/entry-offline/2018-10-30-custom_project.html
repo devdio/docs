@@ -366,7 +366,7 @@
     
     <h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><p>엔트리 오프라인은 내부적으로 entryjs, entry-hw 프로젝트를 포함하고 있습니다.<br>정식 릴리즈판의 경우, 운영되고 있는 버전의 1달 이전 버전을 사용하기 때문에 빠른 반영을 원하시는 분이 있을 수 있습니다.</p>
 <p>이에 관련하여 이 문서에서는 자신이 개발한 entryjs 혹은 entry-hw 버전으로 교체하여 오프라인 프로젝트를 빌드하는 방법을 작성하였습니다.</p>
-<h3 id="연동-구조"><a href="#연동-구조" class="headerlink" title="연동 구조"></a>연동 구조</h3><p>엔트리 오프라인은 렌더러 프로세스에서 entryjs, entry-hw 프로젝트를 가져오는 구조입니다.</p>
+<h2 id="연동-구조"><a href="#연동-구조" class="headerlink" title="연동 구조"></a>연동 구조</h2><p>엔트리 오프라인은 렌더러 프로세스에서 entryjs, entry-hw 프로젝트를 가져오는 구조입니다.</p>
 <p>아래는 bower.json 에 기술된 내용입니다.</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    //...</span><br><span class="line">    "dependencies": &#123;</span><br><span class="line">        "entry-hw": "https://github.com/entrylabs/entry-hw.git#[latest tag version]",</span><br><span class="line">        //other dependencies...</span><br><span class="line">        "entryjs": "#[latest tag version]"</span><br><span class="line">    &#125;,</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>entry-hw 는 직접 github 에서 데이터를 가져오며, entryjs 는 bower 저장소에 등록된 버전을 가져오는 형태를 띄고 있습니다.</p>
@@ -374,8 +374,8 @@
 <blockquote>
 <p>entry-hw 의 경우 : ht<span>tps://github.co</span>m/[자신의 ID]/entry-hw.git#master<br>entryjs 의 경우 : ht<span>tps://github.co</span>m/[자신의 ID]/entryjs.git#master</p>
 </blockquote>
-<h3 id="반영-절차"><a href="#반영-절차" class="headerlink" title="반영 절차"></a>반영 절차</h3><h4 id="각-프로젝트-fork-하기"><a href="#각-프로젝트-fork-하기" class="headerlink" title="각 프로젝트 fork 하기"></a>각 프로젝트 fork 하기</h4><p>반영하고자 하는 프로젝트를 먼저 fork 합니다. fork 방법은 각 가이드문서(<a href="/docs/guide/entryjs/2018-03-09-getting_started.html">entryjs</a>, <a href="/docs/guide/entry-hw/2016-05-01-getting_started.html">entry-hw</a>)<br>를 참고해주세요.</p>
-<h4 id="entryjs-반영하기"><a href="#entryjs-반영하기" class="headerlink" title="entryjs 반영하기"></a>entryjs 반영하기</h4><blockquote>
+<h2 id="반영-절차"><a href="#반영-절차" class="headerlink" title="반영 절차"></a>반영 절차</h2><h3 id="각-프로젝트-fork-하기"><a href="#각-프로젝트-fork-하기" class="headerlink" title="각 프로젝트 fork 하기"></a>각 프로젝트 fork 하기</h3><p>반영하고자 하는 프로젝트를 먼저 fork 합니다. fork 방법은 각 가이드문서(<a href="/docs/guide/entryjs/2018-03-09-getting_started.html">entryjs</a>, <a href="/docs/guide/entry-hw/2016-05-01-getting_started.html">entry-hw</a>)<br>를 참고해주세요.</p>
+<h3 id="entryjs-반영하기"><a href="#entryjs-반영하기" class="headerlink" title="entryjs 반영하기"></a>entryjs 반영하기</h3><blockquote>
 <p>entryjs 에서의 개발은 해당 카테고리를 참고해주세요.</p>
 </blockquote>
 <p>배포판의 경우, entryjs 를 그대로 사용하는 것이 아닌 bundle 된 데이터와 offline 에서 필요한 몇가지 파일만을 추출해서 사용합니다.<br>오프라인 프로젝트는 이에 맞춘 구조로 이루어져 있으므로, 동일한 구조로 만들어 주어야 합니다.</p>
@@ -385,9 +385,9 @@
 <blockquote>
 <p>이에 관해서는 편의성을 위해 추후 스크립트 개선 혹은 구조 변경이 있을 수 있습니다.</p>
 </blockquote>
-<h4 id="entry-hw-반영하기"><a href="#entry-hw-반영하기" class="headerlink" title="entry-hw 반영하기"></a>entry-hw 반영하기</h4><p>entry-hw 는 특별한 빌드 방법 없이 bower.json 의 주소를 자신의 repository 로 변경 한 후 설치된 파일 그대로 사용합니다.</p>
+<h3 id="entry-hw-반영하기"><a href="#entry-hw-반영하기" class="headerlink" title="entry-hw 반영하기"></a>entry-hw 반영하기</h3><p>entry-hw 는 특별한 빌드 방법 없이 bower.json 의 주소를 자신의 repository 로 변경 한 후 설치된 파일 그대로 사용합니다.</p>
 <p>특별히 dependency 를 설치해주지 않아도 됩니다.</p>
-<h4 id="실행해보기"><a href="#실행해보기" class="headerlink" title="실행해보기"></a>실행해보기</h4><p>위와 같은 작업이 끝나면, <code>npm run start</code> 로 정상적으로 실행되는지 확인할 수 있습니다.</p>
+<h3 id="실행해보기"><a href="#실행해보기" class="headerlink" title="실행해보기"></a>실행해보기</h3><p>위와 같은 작업이 끝나면, <code>npm run start</code> 로 정상적으로 실행되는지 확인할 수 있습니다.</p>
 
     
       <div class="guide-links">
